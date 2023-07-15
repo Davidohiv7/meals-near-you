@@ -1,40 +1,40 @@
-import { StyleSheet, View, SafeAreaView } from 'react-native';
-import { COLORS } from 'style/colors';
+import { View, SafeAreaView } from 'react-native';
 import { ANDROID_STATUSBAR_HEIGHT } from 'utils/constants';
 import { Searchbar } from 'react-native-paper';
 import { FC, useState } from 'react';
-import { RestaurantInfo } from 'components/RestaurantInfo';
+import RestaurantCardInfo from 'components/RestaurantCard';
+import { styled } from 'styled-components';
+
+const StyledSafeAreaView = styled(SafeAreaView)`
+  flex: 1;
+  margin-top: ${ANDROID_STATUSBAR_HEIGHT || 0}px;
+`;
+
+const SearchBarContainer = styled(View)`
+  padding: ${(props) => props.theme.space[3]};
+`;
+
+const ListContainer = styled(View)`
+  flex: 1;
+  padding: ${(props) => props.theme.space[3]};
+`;
 
 const RestaurantScreen: FC = () => {
   const [search, setSearch] = useState('');
   return (
-    <SafeAreaView style={styles.root}>
-      <View style={styles.search}>
+    <StyledSafeAreaView>
+      <SearchBarContainer>
         <Searchbar
           value={search}
           elevation={2}
           onChangeText={(text) => setSearch(text)}
         />
-      </View>
-      <View style={styles.list}>
-        <RestaurantInfo />
-      </View>
-    </SafeAreaView>
+      </SearchBarContainer>
+      <ListContainer>
+        <RestaurantCardInfo />
+      </ListContainer>
+    </StyledSafeAreaView>
   );
 };
-
-const styles = StyleSheet.create({
-  root: {
-    flex: 1,
-    marginTop: ANDROID_STATUSBAR_HEIGHT,
-  },
-  search: {
-    padding: 16,
-  },
-  list: {
-    flex: 1,
-    padding: 16,
-  },
-});
 
 export default RestaurantScreen;
