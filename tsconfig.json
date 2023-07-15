@@ -10,7 +10,8 @@
       "screens/*": ["src/screens/*"],
       "style/*": ["src/style/*"],
       "types/*": ["src/types/*"],
-      "utils/*": ["src/utils/*"]
+      "utils/*": ["src/utils/*"],
+      "assets/*": ["assets/*"]
     }
   }
 }
