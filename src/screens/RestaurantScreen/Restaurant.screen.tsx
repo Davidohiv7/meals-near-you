@@ -1,36 +1,26 @@
-import { Searchbar } from 'react-native-paper';
-import { FC, useState } from 'react';
-import RestaurantCardInfo, {
-  TEST_RESTAURANT,
-} from 'components/RestaurantCard/RestaurantCard';
-import {
-  RestaurantScreenList,
-  RestuarantScreenSearchBarContainer,
-} from './styles';
+import { FC, useContext } from 'react';
+import { RestaurantScreenList } from './styles';
 import { GoogleRestaurant } from 'types/Restaurant';
 import ScreenStyledSafeAreaView from 'components/ScreenSafeAreaView';
+import { RestaurantsContext } from 'providers/restaurantProvider';
+import LoadingScreen from 'components/Loader';
+import RestaurantCardInfo from 'components/RestaurantCard/RestaurantCard';
+import Search from 'components/Search/Search';
 
 const RestaurantScreen: FC = () => {
-  const [search, setSearch] = useState('');
+  const { isLoading, restaurants } = useContext(RestaurantsContext);
   return (
     <ScreenStyledSafeAreaView>
-      <RestuarantScreenSearchBarContainer>
-        <Searchbar
-          value={search}
-          elevation={2}
-          onChangeText={(text) => setSearch(text)}
+      <Search />
+      {isLoading ? (
+        <LoadingScreen />
+      ) : (
+        <RestaurantScreenList
+          data={restaurants}
+          renderItem={({ item }) => <RestaurantCardInfo restaurant={item} />}
+          keyExtractor={(restaurant: GoogleRestaurant) => restaurant.name}
         />
-      </RestuarantScreenSearchBarContainer>
-      <RestaurantScreenList
-        data={[
-          { ...TEST_RESTAURANT, name: 'Restaurant 1' },
-          { ...TEST_RESTAURANT, name: 'Restaurant 2' },
-          { ...TEST_RESTAURANT, name: 'Restaurant 3' },
-          { ...TEST_RESTAURANT, name: 'Restaurant 4' },
-        ]}
-        renderItem={({ item }) => <RestaurantCardInfo restaurant={item} />}
-        keyExtractor={(restaurant: GoogleRestaurant) => restaurant.name}
-      />
+      )}
     </ScreenStyledSafeAreaView>
   );
 };

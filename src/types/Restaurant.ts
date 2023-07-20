@@ -2,7 +2,7 @@ export type GoogleRestaurant = {
   name: string;
   icon?: any;
   photos: string[];
-  address: '100 some random street';
+  address: string;
   isOpenNow: boolean;
   rating: number;
   isClosedTemporarily?: boolean;
