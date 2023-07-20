@@ -12,7 +12,8 @@
       "types/*": ["src/types/*"],
       "utils/*": ["src/utils/*"],
       "assets/*": ["assets/*"],
-      "services/*": ["src/services/*"]
+      "services/*": ["src/services/*"],
+      "infrastructure/*": ["src/infrastructure/*"]
     }
   }
 }

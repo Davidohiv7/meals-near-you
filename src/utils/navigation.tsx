@@ -26,4 +26,5 @@ export const createScreenOptions = ({
   ),
   tabBarActiveTintColor: colors.brand.primary,
   tabBarInactiveTintColor: colors.brand.secondary,
+  headerShown: false,
 });
