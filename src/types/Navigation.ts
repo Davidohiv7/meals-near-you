@@ -14,6 +14,7 @@ export enum TabName {
 }
 
 export type StackList = {
+  [TabName.map]: undefined;
   [TabName.restaurant]: undefined;
   [TabName.restaurantDetail]: {
     restaurant: GoogleRestaurant;

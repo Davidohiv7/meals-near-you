@@ -18,24 +18,13 @@ import {
   RestaurantCard,
   StyledImage,
 } from './styles';
-
-export const TEST_RESTAURANT: GoogleRestaurant = {
-  name: 'Some Restaurant',
-  icon: 'https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/lodging-71.png',
-  photos: [
-    'https://www.foodiesfeed.com/wp-content/uploads/2019/06/top-view-for-box-of-2-burgers-home-made-600x899.jpg',
-  ],
-  address: '100 some random street',
-  isOpenNow: true,
-  rating: 4.1,
-  isClosedTemporarily: false,
-};
+import FavouriteButton from 'components/Favourite/FavouriteButton';
 
 type Props = {
   restaurant?: GoogleRestaurant;
 };
 
-const RestaurantCardInfo: FC<Props> = ({ restaurant = TEST_RESTAURANT }) => {
+const RestaurantCardInfo: FC<Props> = ({ restaurant }) => {
   const {
     name,
     photos,
@@ -44,19 +33,23 @@ const RestaurantCardInfo: FC<Props> = ({ restaurant = TEST_RESTAURANT }) => {
     isClosedTemporarily,
     isOpenNow,
     icon,
-  } = restaurant;
+    geometry,
+  } = restaurant || {};
   const ratingArray = useMemo(
-    () => Array.from(new Array(Math.round(rating))) || [],
+    () => (rating ? Array.from(new Array(Math.round(rating) || 0)) : []),
     [rating]
   );
   return (
     <RestaurantCard mode="elevated" elevation={5}>
-      <CardCover source={{ uri: photos[0] }} />
+      <View>
+        <FavouriteButton restaurant={restaurant} />
+        <CardCover source={{ uri: photos?.[0] }} />
+      </View>
       <CardTitle>{name}</CardTitle>
       <CardBody>
         <CardInfo>
           <InfoItem>
-            {ratingArray.map((_, idx) => (
+            {ratingArray?.map((_, idx) => (
               <SvgXml
                 key={`${name}-rating-${idx}`}
                 xml={star}

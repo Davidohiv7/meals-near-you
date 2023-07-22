@@ -1,11 +1,61 @@
-import { FC } from 'react';
+import { FC, useContext, useEffect, useState } from 'react';
 import ScreenStyledSafeAreaView from 'components/ScreenSafeAreaView';
-import { Text } from 'react-native';
+import { Map } from './styles';
+import SearchMap from 'components/SearchMap/SearchMap';
+import { View } from 'react-native';
+import { LocationContext } from 'providers/locationProvider';
+import { RestaurantsContext } from 'providers/restaurantProvider';
+import { Marker, Callout } from 'react-native-maps';
+import getCoordinates from 'utils/mockData/getCoordinates';
+import MapCallout from 'components/MapCallout/MapCallout';
+import { StackList, TabName } from 'types/Navigation';
+import type { StackScreenProps } from '@react-navigation/stack';
 
-const MapScreen: FC = () => {
+type Props = StackScreenProps<StackList, TabName.map>;
+
+const MapScreen: FC<Props> = ({ navigation }) => {
+  const { location: geometry } = useContext(LocationContext);
+  const { restaurants = [] } = useContext(RestaurantsContext);
+  const [latDelta, setLatDelta] = useState(0);
+  const { location, viewport } = geometry || {};
+
+  useEffect(() => {
+    setLatDelta(getCoordinates(geometry).latitudeDelta);
+  }, [location, viewport]);
+
   return (
     <ScreenStyledSafeAreaView>
-      <Text>Map</Text>
+      <View>
+        <SearchMap />
+        <Map
+          region={{
+            latitude: location?.lat || 0,
+            longitude: location?.lng || 0,
+            latitudeDelta: latDelta,
+            longitudeDelta: 0.02,
+          }}
+        >
+          {restaurants.map((restaurant) => {
+            return (
+              <Marker
+                key={restaurant.name}
+                title={restaurant.name}
+                coordinate={getCoordinates(restaurant.geometry)}
+              >
+                <Callout
+                  onPress={() =>
+                    navigation.navigate(TabName.restaurantDetail, {
+                      restaurant,
+                    })
+                  }
+                >
+                  <MapCallout restaurant={restaurant} />
+                </Callout>
+              </Marker>
+            );
+          })}
+        </Map>
+      </View>
     </ScreenStyledSafeAreaView>
   );
 };

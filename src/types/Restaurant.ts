@@ -1,4 +1,7 @@
+import { Geometry } from './Map';
+
 export type GoogleRestaurant = {
+  placeId: number;
   name: string;
   icon?: any;
   photos: string[];
@@ -6,4 +9,5 @@ export type GoogleRestaurant = {
   isOpenNow: boolean;
   rating: number;
   isClosedTemporarily?: boolean;
+  geometry: Geometry;
 };

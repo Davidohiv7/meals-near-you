@@ -1,4 +1,5 @@
 import { capitalize } from 'lodash';
+import { Geometry } from 'types/Map';
 import { mockLocations } from 'utils/mockData/location';
 import transformCityIndex from 'utils/transformCityIndex';
 
@@ -12,11 +13,8 @@ export const locationRequest = (searchTerm: string) => {
   });
 };
 
-export const locationTransform = (
-  result: any
-): { lat: string; lng: string } => {
+export const locationTransform = (result: any): Geometry => {
   const { geometry = {} } = result.results[0];
-  const { lat, lng } = geometry.location;
-
-  return { lat, lng };
+  const location: Geometry = geometry;
+  return location;
 };
