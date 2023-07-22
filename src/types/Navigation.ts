@@ -11,9 +11,15 @@ export enum TabName {
   settings = 'Settings',
   map = 'Map',
   restaurantDetail = 'Restaurant Detail',
+  signIn = 'Sign In',
+  signUp = 'Sign Up',
+  main = 'Main',
 }
 
 export type StackList = {
+  [TabName.main]: undefined;
+  [TabName.signIn]: undefined;
+  [TabName.signUp]: undefined;
   [TabName.map]: undefined;
   [TabName.restaurant]: undefined;
   [TabName.restaurantDetail]: {

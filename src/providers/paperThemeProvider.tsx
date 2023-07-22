@@ -1,6 +1,7 @@
 import { FC, ReactNode } from 'react';
 import { PaperProvider, DefaultTheme } from 'react-native-paper';
 import { ThemeProp } from 'react-native-paper/lib/typescript/src/types';
+import { colors } from 'style/styledComponentsTheme/colors';
 
 const theme: ThemeProp = {
   ...DefaultTheme,
@@ -15,6 +16,7 @@ const theme: ThemeProp = {
       level4: 'white',
       level5: 'white',
     },
+    primary: colors.brand.secondary,
   },
 };
 

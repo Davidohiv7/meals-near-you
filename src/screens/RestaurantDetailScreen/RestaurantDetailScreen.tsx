@@ -1,5 +1,5 @@
 import { StackScreenProps } from '@react-navigation/stack';
-import RestaurantCardInfo from 'components/RestaurantCard/RestaurantCard';
+import RestaurantCardInfo from 'components/Restaurant/RestaurantCard/RestaurantCard';
 import ScreenStyledSafeAreaView from 'components/ScreenSafeAreaView';
 import { FC, useState } from 'react';
 import { ScrollView } from 'react-native';

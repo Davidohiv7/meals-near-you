@@ -1,5 +1,6 @@
 import React, { useState, useEffect, ReactNode, createContext } from 'react';
 import { GoogleRestaurant } from 'types/Restaurant';
+import { loadFavourites, saveFavourites } from './utils';
 
 type Props = {
   children: ReactNode;
@@ -31,6 +32,15 @@ export const FavouritesContextProvider = ({ children }: Props) => {
 
     setFavourites(newFavourites);
   };
+
+  useEffect(() => {
+    loadFavourites(setFavourites);
+  }, []);
+
+  useEffect(() => {
+    saveFavourites(favourites);
+  }, [favourites]);
+
   return (
     <FavouritesContext.Provider
       value={{

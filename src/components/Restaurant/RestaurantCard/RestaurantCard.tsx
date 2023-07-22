@@ -6,7 +6,7 @@ import { Card } from 'react-native-paper';
 import { SvgXml } from 'react-native-svg';
 import { styled } from 'styled-components';
 import { GoogleRestaurant } from 'types/Restaurant';
-import Spacer, { SpacerSize, SpacerVariant } from '../Spacer';
+import Spacer, { SpacerSize, SpacerVariant } from '../../Spacer';
 import {
   CardBody,
   CardCover,

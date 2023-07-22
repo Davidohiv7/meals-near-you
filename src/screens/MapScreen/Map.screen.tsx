@@ -9,9 +9,11 @@ import { Marker, Callout } from 'react-native-maps';
 import getCoordinates from 'utils/mockData/getCoordinates';
 import MapCallout from 'components/MapCallout/MapCallout';
 import { StackList, TabName } from 'types/Navigation';
-import type { StackScreenProps } from '@react-navigation/stack';
+import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
 
-type Props = StackScreenProps<StackList, TabName.map>;
+type Props = {
+  navigation: BottomTabScreenProps<StackList, TabName.map>['navigation'];
+};
 
 const MapScreen: FC<Props> = ({ navigation }) => {
   const { location: geometry } = useContext(LocationContext);

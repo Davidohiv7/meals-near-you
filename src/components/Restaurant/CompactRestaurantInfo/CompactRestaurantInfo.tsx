@@ -1,4 +1,4 @@
-import { InfoItem } from 'components/RestaurantCard/styles';
+import { InfoItem } from 'components/Restaurant/RestaurantCard/styles';
 import { FC } from 'react';
 import { CompactImage, CompactWebview, Item } from './styles';
 import { GoogleRestaurant } from 'types/Restaurant';
@@ -7,15 +7,17 @@ import { Text } from 'react-native-paper';
 
 type Props = {
   restaurant: GoogleRestaurant;
+  isMap?: boolean;
 };
 
-const CompactRestaurantInfo: FC<Props> = ({ restaurant }) => {
+const CompactRestaurantInfo: FC<Props> = ({ restaurant, isMap }) => {
   const source = { uri: restaurant.photos[0] };
-  const Image = IS_ANDROID ? (
-    <CompactWebview source={source} />
-  ) : (
-    <CompactImage source={source} />
-  );
+  const Image =
+    isMap && IS_ANDROID ? (
+      <CompactWebview source={source} />
+    ) : (
+      <CompactImage source={source} />
+    );
   return (
     <Item>
       {Image}
