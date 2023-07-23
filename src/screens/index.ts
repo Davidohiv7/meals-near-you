@@ -4,7 +4,9 @@ import SignUpScreen from './Auth/SignUpScreen/SignUpScreen';
 import MapScreen from './MapScreen/Map.screen';
 import RestaurantDetailScreen from './RestaurantDetailScreen/RestaurantDetailScreen';
 import RestaurantScreen from './RestaurantScreen/Restaurant.screen';
-import SettingsScreen from './SettingsScreen/Settings.screen';
+import SettingsScreen from './Settings/SettingsScreen/Settings.screen';
+import FavouritesScreen from './Settings/FavouritesScreen/Favourites.screen';
+import CameraScreen from './Settings/CameraScreen/CameraScreen';
 
 export {
   RestaurantScreen,
@@ -14,4 +16,6 @@ export {
   SignInScreen,
   AuthMainScreen,
   SignUpScreen,
+  FavouritesScreen,
+  CameraScreen,
 };

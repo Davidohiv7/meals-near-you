@@ -14,9 +14,18 @@ export enum TabName {
   signIn = 'Sign In',
   signUp = 'Sign Up',
   main = 'Main',
+  favourites = 'Favourites',
+  favouriteDetail = 'Favourite Detail',
+  camera = 'Camera',
 }
 
 export type StackList = {
+  [TabName.settings]: undefined;
+  [TabName.camera]: undefined;
+  [TabName.favourites]: undefined;
+  [TabName.favouriteDetail]: {
+    restaurant: GoogleRestaurant;
+  };
   [TabName.main]: undefined;
   [TabName.signIn]: undefined;
   [TabName.signUp]: undefined;

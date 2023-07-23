@@ -6,7 +6,10 @@ import { ScrollView } from 'react-native';
 import { List } from 'react-native-paper';
 import { StackList, TabName } from 'types/Navigation';
 
-type Props = StackScreenProps<StackList, TabName.restaurantDetail>;
+type Props = StackScreenProps<
+  StackList,
+  TabName.restaurantDetail | TabName.favouriteDetail
+>;
 
 const { Accordion, Icon, Item } = List;
 

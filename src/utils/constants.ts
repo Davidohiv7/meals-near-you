@@ -1,3 +1,4 @@
+import { CameraType } from 'expo-camera';
 import { Platform, StatusBar } from 'react-native';
 import { TabIcon, TabName } from 'types/Navigation';
 
@@ -12,3 +13,6 @@ export const TAB_ICON_OBJECT: { [key: string]: TabIcon } = {
   [TabName.settings]: TabIcon.settings,
   [TabName.map]: TabIcon.map,
 };
+
+export const CAMERA_FRONT = CameraType.front;
+export const CAMERA_BACK = CameraType.back;

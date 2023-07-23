@@ -10,6 +10,7 @@ import type { StackScreenProps } from '@react-navigation/stack';
 import { StackList, TabName } from 'types/Navigation';
 import { TouchableOpacity } from 'react-native';
 import FavouriteBar from 'components/Favourite/FavouriteBar';
+import { FadeInView } from 'components/Animations';
 
 type Props = StackScreenProps<StackList, TabName.restaurant>;
 
@@ -24,21 +25,23 @@ const RestaurantScreen: FC<Props> = ({ navigation }) => {
       {isLoading ? (
         <LoadingScreen />
       ) : (
-        <RestaurantScreenList
-          data={restaurants}
-          renderItem={({ item }) => (
-            <TouchableOpacity
-              onPress={() =>
-                navigation.navigate(TabName.restaurantDetail, {
-                  restaurant: item,
-                })
-              }
-            >
-              <RestaurantCardInfo restaurant={item} />
-            </TouchableOpacity>
-          )}
-          keyExtractor={(restaurant: GoogleRestaurant) => restaurant.name}
-        />
+        <FadeInView>
+          <RestaurantScreenList
+            data={restaurants}
+            renderItem={({ item }) => (
+              <TouchableOpacity
+                onPress={() =>
+                  navigation.navigate(TabName.restaurantDetail, {
+                    restaurant: item,
+                  })
+                }
+              >
+                <RestaurantCardInfo restaurant={item} />
+              </TouchableOpacity>
+            )}
+            keyExtractor={(restaurant: GoogleRestaurant) => restaurant.name}
+          />
+        </FadeInView>
       )}
     </ScreenStyledSafeAreaView>
   );
