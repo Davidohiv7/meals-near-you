@@ -1,6 +1,6 @@
 import { JSXElementConstructor, ReactNode } from 'react';
 import { ImageBackground, View } from 'react-native';
-import { Button, Text } from 'react-native-paper';
+import { ActivityIndicator, Button, Text } from 'react-native-paper';
 import { styled } from 'styled-components';
 
 export const AccountBackground: JSXElementConstructor<{
@@ -40,4 +40,16 @@ export const AuthTitle = styled(Text).attrs({
 })`
   font-weight: ${(props) => props.theme.fontWeights.bold};
   font-family: ${(props) => props.theme.fonts.monospace};
+`;
+
+export const Loading = styled(ActivityIndicator).attrs({
+  size: 28,
+})``;
+
+export const AnimationWrapper = styled(View)`
+  width: 100%;
+  height: 40%;
+  position: absolute;
+  top: 30px;
+  padding: ${(props) => props.theme.space[2]};
 `;

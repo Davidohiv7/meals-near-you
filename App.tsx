@@ -31,13 +31,7 @@ export default function App() {
     <StyledThemeProvider>
       <PaperThemeProvider>
         <AuthContextProvider>
-          <FavouritesContextProvider>
-            <LocationContextProvider>
-              <RestaurantsContextProvider>
-                <Navigation />
-              </RestaurantsContextProvider>
-            </LocationContextProvider>
-          </FavouritesContextProvider>
+          <Navigation />
         </AuthContextProvider>
       </PaperThemeProvider>
     </StyledThemeProvider>

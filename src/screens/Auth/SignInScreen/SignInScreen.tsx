@@ -4,6 +4,7 @@ import {
   AccountBackground,
   AuthButton,
   AuthTitle,
+  Loading,
 } from '../AuthMainScreen/styles';
 import Spacer, { SpacerSize, SpacerVariant } from 'components/Spacer';
 import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
@@ -18,10 +19,9 @@ type Props = {
 };
 
 const SignInMainScreen: FC<Props> = ({ navigation }) => {
-  const { error, onSignIn } = useContext(AuthContext);
+  const { isLoading, signInError: error, onSignIn } = useContext(AuthContext);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-
   return (
     <AccountBackground>
       <AccountCover>
@@ -48,20 +48,27 @@ const SignInMainScreen: FC<Props> = ({ navigation }) => {
           <Spacer size={SpacerSize.sx} variant={SpacerVariant.top}>
             {error && <ErrorMessage message={error} />}
           </Spacer>
-          <Spacer size={SpacerSize.lg} variant={SpacerVariant.top}>
-            <AuthButton
-              icon="account-lock-open"
-              mode="contained"
-              onPress={() => onSignIn(email, password)}
-            >
-              Sign In
-            </AuthButton>
-          </Spacer>
 
+          {isLoading ? (
+            <Spacer size={SpacerSize.lg} variant={SpacerVariant.top}>
+              <Loading />
+            </Spacer>
+          ) : (
+            <Spacer size={SpacerSize.lg} variant={SpacerVariant.top}>
+              <AuthButton
+                icon="account-lock-open"
+                mode="contained"
+                onPress={() => onSignIn(email, password)}
+              >
+                Sign In
+              </AuthButton>
+            </Spacer>
+          )}
           <Spacer size={SpacerSize.sx} variant={SpacerVariant.top}>
             <AuthButton
               icon="arrow-left"
               onPress={() => navigation.navigate(TabName.main)}
+              disabled={isLoading}
             >
               Back
             </AuthButton>

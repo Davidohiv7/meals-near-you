@@ -5,10 +5,13 @@ import {
   AccountContainer,
   AuthButton,
   AuthTitle,
+  AnimationWrapper,
 } from '../AuthMainScreen/styles';
 import Spacer, { SpacerSize, SpacerVariant } from 'components/Spacer';
 import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
 import { StackList, TabName } from 'types/Navigation';
+import AnimatedLottieView from 'lottie-react-native';
+import json from '../../../../assets/watermelon.json';
 
 type Props = {
   navigation: BottomTabScreenProps<StackList, TabName.main>['navigation'];
@@ -18,6 +21,15 @@ const AuthMainScreen: FC<Props> = ({ navigation }) => {
   return (
     <AccountBackground>
       <AccountCover>
+        <AnimationWrapper>
+          <AnimatedLottieView
+            key="animation"
+            autoPlay
+            loop
+            resizeMode="cover"
+            source={json}
+          />
+        </AnimationWrapper>
         <AuthTitle>Meals Near You</AuthTitle>
         <AccountContainer>
           <AuthButton
