@@ -1,9 +1,12 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Dispatch, SetStateAction } from 'react';
+import {
+  getStorageKey,
+  loadStorageItem,
+  setStorageItem,
+} from 'services/storage';
 import { GoogleRestaurant } from 'types/Restaurant';
-
-const FAVOURITES_STORAGE_KEY = '@favourites';
-const getFavouritesKey = (uid: string) => `${uid}:${FAVOURITES_STORAGE_KEY}`;
+import { AsyncStorageKey } from 'types/Storage';
 
 export const saveFavourites = async (
   value: GoogleRestaurant[],
@@ -11,7 +14,7 @@ export const saveFavourites = async (
 ) => {
   try {
     const jsonValue = JSON.stringify(value);
-    await AsyncStorage.setItem(getFavouritesKey(uid), jsonValue);
+    await setStorageItem(jsonValue, { uid, key: AsyncStorageKey.favourites });
   } catch (e) {
     console.log('error storing', e);
   }
@@ -22,7 +25,11 @@ export const loadFavourites = async (
   uid: string
 ) => {
   try {
-    const value = await AsyncStorage.getItem(getFavouritesKey(uid));
+    const value = await loadStorageItem({
+      uid,
+      key: AsyncStorageKey.favourites,
+    });
+
     if (value !== null) {
       const parsedValue: GoogleRestaurant[] = JSON.parse(value) || [];
       setFavourites(parsedValue);

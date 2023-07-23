@@ -21,7 +21,9 @@ export enum TabName {
 
 export type StackList = {
   [TabName.settings]: undefined;
-  [TabName.camera]: undefined;
+  [TabName.camera]: {
+    getProfilePicture: (uid: string) => Promise<void>;
+  };
   [TabName.favourites]: undefined;
   [TabName.favouriteDetail]: {
     restaurant: GoogleRestaurant;
