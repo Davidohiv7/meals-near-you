@@ -4,6 +4,7 @@ import {
   locationTransform,
 } from 'services/location/mockLocationData';
 import { Geometry } from 'types/Map';
+import { LOCATION_URL } from 'utils/constants';
 
 type Props = {
   children: ReactNode;
@@ -33,23 +34,22 @@ export const LocationContextProvider = ({ children }: Props) => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const onSearch = (searchKeyword = '') => {
+  const onSearch = async (searchKeyword = '') => {
     if (!searchKeyword || searchKeyword === keyword) {
       setIsLoading(false);
       return;
     }
-    setIsLoading(true);
     setKeyword(searchKeyword);
-    locationRequest(searchKeyword)
-      .then(locationTransform)
-      .then((result) => {
-        setIsLoading(false);
-        setLocation(result);
-      })
-      .catch((err) => {
-        setIsLoading(false);
-        setError(err);
-      });
+    setIsLoading(true);
+    try {
+      const response = await fetch(`${LOCATION_URL}/${searchKeyword}`);
+      const location = await response?.json();
+      setLocation(location);
+    } catch (e: any) {
+      setError(e);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   useEffect(() => {

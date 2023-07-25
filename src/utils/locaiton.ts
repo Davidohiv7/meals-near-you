@@ -1,6 +1,6 @@
 import { Geometry, MapCoordinates } from 'types/Map';
 
-const getCoordinates = (geometry: Geometry | null): MapCoordinates => {
+export const getCoordinates = (geometry: Geometry | null): MapCoordinates => {
   const { location, viewport } = geometry || {};
   const northeastLat = viewport?.northeast?.lat || 0;
   const southwestLat = viewport?.southwest?.lat || 0;
@@ -11,5 +11,3 @@ const getCoordinates = (geometry: Geometry | null): MapCoordinates => {
     longitudeDelta: 0.02,
   };
 };
-
-export default getCoordinates;

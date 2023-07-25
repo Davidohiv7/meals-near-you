@@ -6,10 +6,11 @@ import { View } from 'react-native';
 import { LocationContext } from 'providers/locationProvider';
 import { RestaurantsContext } from 'providers/restaurantProvider';
 import { Marker, Callout } from 'react-native-maps';
-import getCoordinates from 'utils/mockData/getCoordinates';
+
 import MapCallout from 'components/MapCallout/MapCallout';
 import { StackList, TabName } from 'types/Navigation';
 import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
+import { getCoordinates } from 'utils/locaiton';
 
 type Props = {
   navigation: BottomTabScreenProps<StackList, TabName.map>['navigation'];

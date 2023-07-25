@@ -11,6 +11,7 @@ import {
   restaurantsTransform,
 } from 'services/restaurant/mockRestaurantData';
 import { LocationContext } from './locationProvider';
+import { LOCATION_URL, RESTAURANT_URL } from 'utils/constants';
 
 type Props = {
   children: ReactNode;
@@ -34,24 +35,23 @@ export const RestaurantsContext = createContext<RestaurantContextValue>({
 
 export const RestaurantsContextProvider = ({ children }: Props) => {
   const { location } = useContext(LocationContext);
-
   const [restaurants, setRestaurants] = useState<GoogleRestaurant[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<Error | null>(null);
-  const retrieveRestaurants = (locationString: string) => {
+
+  const retrieveRestaurants = async (locationString: string) => {
     setIsLoading(true);
-    setTimeout(() => {
-      restaurantsRequest(locationString)
-        .then(restaurantsTransform)
-        .then((results: GoogleRestaurant[]) => {
-          setIsLoading(false);
-          setRestaurants(results);
-        })
-        .catch((err: Error | null) => {
-          setIsLoading(false);
-          setError(err);
-        });
-    }, 500);
+    try {
+      const response = await fetch(
+        `${RESTAURANT_URL}?location=${locationString}`
+      );
+      const restaurants = await response?.json();
+      setRestaurants(restaurants);
+    } catch (e: any) {
+      setError(e);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   useEffect(() => {
