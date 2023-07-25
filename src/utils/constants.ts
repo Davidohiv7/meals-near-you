@@ -1,12 +1,13 @@
 import { CameraType } from 'expo-camera';
-import { Platform, StatusBar } from 'react-native';
+import { StatusBar } from 'react-native';
 import { TabIcon, TabName } from 'types/Navigation';
 import { API_URL } from '@env';
+import { osName } from 'expo-device';
 
-export const ANDROID = 'android';
+export const ANDROID = 'Android';
 export const IOS = 'ios';
 
-export const IS_ANDROID = Platform.OS === ANDROID;
+export const IS_ANDROID = osName === ANDROID;
 export const ANDROID_STATUSBAR_HEIGHT = StatusBar.currentHeight;
 
 export const TAB_ICON_OBJECT: { [key: string]: TabIcon } = {

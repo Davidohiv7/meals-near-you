@@ -30,9 +30,9 @@ const FavouriteBar: FC<Props> = ({ navigate }) => {
 
       <ScrollView horizontal showsHorizontalScrollIndicator={false}>
         {favourites.map((restaurant) => {
-          const key = restaurant.name;
+          const key = `favourite-${restaurant.name}`;
           return (
-            <Spacer size={SpacerSize.md} variant={SpacerVariant.left}>
+            <Spacer size={SpacerSize.md} variant={SpacerVariant.left} key={key}>
               <TouchableOpacity
                 onPress={() =>
                   navigate(TabName.restaurantDetail, {

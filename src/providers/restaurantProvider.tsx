@@ -6,12 +6,8 @@ import React, {
   useContext,
 } from 'react';
 import { GoogleRestaurant } from 'types/Restaurant';
-import {
-  restaurantsRequest,
-  restaurantsTransform,
-} from 'services/restaurant/mockRestaurantData';
 import { LocationContext } from './locationProvider';
-import { LOCATION_URL, RESTAURANT_URL } from 'utils/constants';
+import { RESTAURANT_URL } from 'utils/constants';
 
 type Props = {
   children: ReactNode;
