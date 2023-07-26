@@ -19,7 +19,7 @@ const SettingsNavigator: FC = () => (
         header: () => null,
       }}
     />
-    <Screen name={TabName.favourites} component={FavouritesNavigator} />
+    <Screen name={TabName.favouritesMain} component={FavouritesNavigator} />
     <Screen name={TabName.camera} component={CameraScreen} />
   </Navigator>
 );

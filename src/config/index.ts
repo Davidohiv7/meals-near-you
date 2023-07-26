@@ -6,6 +6,8 @@ import {
   FIREBASE_API_MESSAGING_SENDER_ID,
   FIREBASE_APP_ID,
   FIREBASE_MEASUREMEN_ID,
+  IS_MOCK as isMock,
+  API_URL as apiUrl,
 } from '@env';
 
 export const FIREBASE_AUTH = {
@@ -17,3 +19,6 @@ export const FIREBASE_AUTH = {
   appId: FIREBASE_APP_ID,
   measurementId: FIREBASE_MEASUREMEN_ID,
 };
+
+export const IS_MOCK = isMock;
+export const API_URL = apiUrl;

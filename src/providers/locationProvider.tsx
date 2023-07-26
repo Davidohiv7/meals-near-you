@@ -1,10 +1,8 @@
+import { useFetchApi } from 'hooks';
 import React, { useState, useEffect, ReactNode, createContext } from 'react';
-import {
-  locationRequest,
-  locationTransform,
-} from 'services/location/mockLocationData';
+import { Alert } from 'react-native';
+import { Paths } from 'types/Api';
 import { Geometry } from 'types/Map';
-import { LOCATION_URL } from 'utils/constants';
 
 type Props = {
   children: ReactNode;
@@ -18,7 +16,7 @@ type LocationContextValue = {
   keyword: string;
 };
 
-const DEFAULT_KEYWORD = 'San Francisco';
+const DEFAULT_KEYWORD = 'Bogota';
 
 export const LocationContext = createContext<LocationContextValue>({
   isLoading: false,
@@ -33,6 +31,7 @@ export const LocationContextProvider = ({ children }: Props) => {
   const [location, setLocation] = useState<null | Geometry>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const { getData } = useFetchApi();
 
   const onSearch = async (searchKeyword = '') => {
     if (!searchKeyword || searchKeyword === keyword) {
@@ -42,9 +41,15 @@ export const LocationContextProvider = ({ children }: Props) => {
     setKeyword(searchKeyword);
     setIsLoading(true);
     try {
-      const response = await fetch(`${LOCATION_URL}/${searchKeyword}`);
-      const location = await response?.json();
-      setLocation(location);
+      const { data, error, message } = await getData({
+        path: Paths.location,
+        param: searchKeyword,
+      });
+      if (error) {
+        Alert.alert(message);
+        return setError(message);
+      }
+      setLocation(data);
     } catch (e: any) {
       setError(e);
     } finally {

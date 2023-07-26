@@ -7,8 +7,9 @@ import React, {
 } from 'react';
 import { GoogleRestaurant } from 'types/Restaurant';
 import { LocationContext } from './locationProvider';
-import { RESTAURANT_URL } from 'utils/constants';
-
+import { useFetchApi } from 'hooks';
+import { Paths } from 'types/Api';
+import { Alert } from 'react-native';
 type Props = {
   children: ReactNode;
 };
@@ -34,15 +35,22 @@ export const RestaurantsContextProvider = ({ children }: Props) => {
   const [restaurants, setRestaurants] = useState<GoogleRestaurant[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<Error | null>(null);
+  const { getData } = useFetchApi();
 
   const retrieveRestaurants = async (locationString: string) => {
     setIsLoading(true);
     try {
-      const response = await fetch(
-        `${RESTAURANT_URL}?location=${locationString}`
-      );
-      const restaurants = await response?.json();
-      setRestaurants(restaurants);
+      const { data, error, message } = await getData({
+        path: Paths.restaurant,
+        queryParams: {
+          location: locationString,
+        },
+      });
+      if (error) {
+        Alert.alert(message);
+        return setError(message);
+      }
+      setRestaurants(data);
     } catch (e: any) {
       setError(e);
     } finally {

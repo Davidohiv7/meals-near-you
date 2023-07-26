@@ -1,7 +1,7 @@
 import { Geometry } from './Map';
 
 export type GoogleRestaurant = {
-  placeId: number;
+  placeId: number | string;
   name: string;
   icon?: any;
   photos: string[];

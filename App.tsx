@@ -10,7 +10,7 @@ import { RestaurantsContextProvider } from 'providers/restaurantProvider';
 import { LocationContextProvider } from 'providers/locationProvider';
 import Navigation from 'infrastructure/Navigation';
 import { FavouritesContextProvider } from 'providers/favouritesProvider';
-import { FIREBASE_AUTH } from 'config/firebase';
+import { FIREBASE_AUTH } from 'config';
 import { AuthContextProvider } from 'providers/authProvider';
 
 initializeApp(FIREBASE_AUTH);

@@ -10,7 +10,7 @@ import { Marker, Callout } from 'react-native-maps';
 import MapCallout from 'components/MapCallout/MapCallout';
 import { StackList, TabName } from 'types/Navigation';
 import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
-import { getCoordinates } from 'utils/locaiton';
+import { getCoordinates } from 'utils/location';
 
 type Props = {
   navigation: BottomTabScreenProps<StackList, TabName.map>['navigation'];
