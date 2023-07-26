@@ -38,10 +38,10 @@ const MapScreen: FC<Props> = ({ navigation }) => {
             longitudeDelta: 0.02,
           }}
         >
-          {restaurants.map((restaurant) => {
+          {restaurants.map((restaurant, idx) => {
             return (
               <Marker
-                key={restaurant.name}
+                key={`${idx}-r${restaurant.name}`}
                 title={restaurant.name}
                 coordinate={getCoordinates(restaurant.geometry)}
               >

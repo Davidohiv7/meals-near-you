@@ -15,5 +15,6 @@
       "services/*": ["src/services/*"],
       "infrastructure/*": ["src/infrastructure/*"]
     }
-  }
+  },
+  "typeRoots": ["./types"]
 }
