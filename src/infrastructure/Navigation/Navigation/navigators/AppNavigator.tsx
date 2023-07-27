@@ -1,6 +1,6 @@
 import { TabName } from 'types/Navigation';
 import { createScreenOptions } from 'utils/navigation';
-import { MapScreen } from 'screens';
+import { CheckoutScreen, MapScreen } from 'screens';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import RestaurantNavigator from './RestaurantNavigator';
 import { FavouritesContextProvider } from 'providers/favouritesProvider';
@@ -22,6 +22,7 @@ const AppNavigator = () => (
             name={TabName.restaurantMain}
             component={RestaurantNavigator}
           />
+          <Screen name={TabName.checkout} component={CheckoutScreen} />
           <Screen name={TabName.map} component={MapScreen} />
           <Screen name={TabName.settingsMain} component={SettingsNavigator} />
         </Navigator>

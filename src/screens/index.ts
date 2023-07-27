@@ -7,6 +7,7 @@ import RestaurantScreen from './RestaurantScreen/Restaurant.screen';
 import SettingsScreen from './Settings/SettingsScreen/Settings.screen';
 import FavouritesScreen from './Settings/FavouritesScreen/Favourites.screen';
 import CameraScreen from './Settings/CameraScreen/CameraScreen';
+import CheckoutScreen from './CheckoutScreen/Checkout.screen';
 
 export {
   RestaurantScreen,
@@ -18,4 +19,5 @@ export {
   SignUpScreen,
   FavouritesScreen,
   CameraScreen,
+  CheckoutScreen,
 };

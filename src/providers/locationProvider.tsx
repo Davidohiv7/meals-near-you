@@ -16,7 +16,7 @@ type LocationContextValue = {
   keyword: string;
 };
 
-const DEFAULT_KEYWORD = 'Bogota';
+const DEFAULT_KEYWORD = 'San Francisco';
 
 export const LocationContext = createContext<LocationContextValue>({
   isLoading: false,

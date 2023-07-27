@@ -6,7 +6,6 @@ import { View } from 'react-native';
 import { LocationContext } from 'providers/locationProvider';
 import { RestaurantsContext } from 'providers/restaurantProvider';
 import { Marker, Callout } from 'react-native-maps';
-
 import MapCallout from 'components/MapCallout/MapCallout';
 import { StackList, TabName } from 'types/Navigation';
 import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';

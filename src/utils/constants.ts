@@ -14,6 +14,7 @@ export const TAB_ICON_OBJECT: { [key: string]: TabIcon } = {
   [TabName.restaurant]: TabIcon.restaurant,
   [TabName.settings]: TabIcon.settings,
   [TabName.map]: TabIcon.map,
+  [TabName.checkout]: TabIcon.checkout,
 };
 
 export const CAMERA_FRONT = CameraType.front;

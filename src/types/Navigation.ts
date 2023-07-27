@@ -4,6 +4,7 @@ export enum TabIcon {
   restaurant = 'md-restaurant',
   settings = 'md-settings',
   map = 'md-map',
+  checkout = 'md-cart',
 }
 
 export enum TabName {
@@ -20,6 +21,7 @@ export enum TabName {
   favourites = 'Favourites',
   favouriteDetail = 'Favourite Detail',
   camera = 'Camera',
+  checkout = 'Checkout',
 }
 
 export type StackList = {
@@ -41,4 +43,5 @@ export type StackList = {
   [TabName.restaurantDetail]: {
     restaurant: GoogleRestaurant;
   };
+  [TabName.checkout]: undefined;
 };

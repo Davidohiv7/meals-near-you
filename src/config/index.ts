@@ -20,5 +20,5 @@ export const FIREBASE_AUTH = {
   measurementId: FIREBASE_MEASUREMEN_ID,
 };
 
-export const IS_MOCK = 'false';
+export const IS_MOCK = 'true';
 export const API_URL = apiUrl;
